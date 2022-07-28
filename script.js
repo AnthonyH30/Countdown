@@ -41,6 +41,7 @@ function openModal(){
 
 function closeModal(){
     modal.classList.remove('active');
+    btnCloseModal.setAttribute('disabled', 'disabled')
 }
 
 function clearModal(){
