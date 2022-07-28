@@ -3,6 +3,13 @@ const hoursEl = document.querySelector('#hours');
 const minsEl = document.querySelector('#mins');
 const secondsEl = document.querySelector('#seconds');
 
+const btnOpenModal = document.querySelector('.btn-sub');
+const btnCloseModal = document.querySelector('.btn-send');
+const modal = document.querySelector('.modal');
+
+const inputName = document.querySelector('.name')
+const inputEmail = document.querySelector('.email')
+
 const launchDay = '30 May 2023';
 
 function countdown(){
@@ -28,6 +35,36 @@ function formateTime(time){
     return time < 10 ? `0${time}` : time;
 }
 
-countdown()
+function openModal(){
+    modal.classList.add('active');
+}
 
+function closeModal(){
+    modal.classList.remove('active');
+}
+
+function clearModal(){
+    inputName.value = '';
+    inputEmail.value = '';
+}
+
+function checkInputs(){
+    if(inputName.value.length > 0 && inputEmail.value.length > 0){
+        btnCloseModal.removeAttribute('disabled');
+        btnCloseModal.setAttribute('active');
+    }else{
+        btnCloseModal.setAttribute('disabled', 'disabled');
+        btnCloseModal.removeAttribute('active');
+    }
+}
+
+
+
+
+countdown()
 setInterval(countdown, 1000)
+
+btnOpenModal.addEventListener('click', openModal);
+btnCloseModal.addEventListener('click', closeModal);
+inputEmail.addEventListener('change', checkInputs);
+btnCloseModal.addEventListener('click', clearModal);
